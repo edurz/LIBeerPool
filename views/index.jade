@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title &iexcl;El mejor lugar del mundo!
+
+    meta(charset='utf-8')
+
+    link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet')
+
+    link(href='css/main.css', rel='stylesheet')
+
+    link(href='https://fonts.googleapis.com/css?family=Indie+Flower', rel='stylesheet', type='text/css')
+
+    link(href='https://fonts.googleapis.com/css?family=Lato:400,300,900', rel='stylesheet', type='text/css')
+
+    link(href='css/animate.css', rel='stylesheet', type='text/css')
+  body
+    section#main-content.full-height.text-center
+      .data
+        .col-md-3.center-block.no-float.top-space
+          img.animated.shake(src='imgs/iconbeer.png')
+          h1.letraIndie.colorTitulo.animated.fadeIn.delay-1  El mejor lugar para beber y divertirse
+          
+          .animated.fadeInDown.delay-2
+            h3.colorSubtitulo Cervezas Artesanales y Pool
+
+            nav
+              a.right-space.mediano(href='/cervezas') Cervezas
+              a.right-space(href='contacto.html') Mesas
+              a.right-space(href='') Contacto
+
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+
+    script(src='js/main.js')

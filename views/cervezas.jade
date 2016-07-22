@@ -1,0 +1,44 @@
+extends ./layout.jade
+
+block contenido
+    .menu.mediano
+          h2.letraIndie.big.colorTitulo Cervezas
+          p Productos de calidad a tu alcance
+          .col-md-3.col-sm-6.col-xs-12.inline-block
+            div
+              h3.letraIndie Negra
+              img.col-xs-7.col-md-4.no-float.animated.fadeInDown.delay-1(src='imgs/blackbeer.png')
+              p
+                strong 4USD
+            div
+              h3.letraIndie Rubia
+              img.col-xs-7.col-md-4.no-float.animated.fadeInDown.delay-1(src='imgs/rubiabeer.png')
+              p
+                strong 2USD
+          .col-md-5.col-sm-5.col-xs-12.inline-block.tope
+            h3.letraIndie
+              a(href="/cervezas/internacionales") Internacionales
+            img.col-xs-7.col-md-4.no-float.animated.shake(src='imgs/interbeer.png')
+            p
+              strong 5USD
+
+          .col-md-3.col-sm-6.col-xs-12.inline-block
+            div
+              h3.letraIndie Roja
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              img.col-xs-7.col-md-4.no-float.animated.fadeInDown.delay-1(src='imgs/redbeer.png')
+
+              p
+                strong 2USD
+
+            div
+              h3.letraIndie Ambar
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              img.col-xs-7.col-md-4.no-float.animated.fadeInDown.delay-1(src='imgs/ambarbeer.png')
+
+              p
+                strong 5USD
+    | &#x9;
+    script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+    | &#x9;
+    script(src='js/main.js')

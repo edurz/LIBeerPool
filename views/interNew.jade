@@ -1,0 +1,17 @@
+extends ./layout.jade
+block contenido
+        div(class="col-md-6 no-float center-block top-space")
+            h1 Nueva Cerveza
+            form(action="/cervezas/internacionales" method= "post")
+                
+                div(class="form-group")
+                    label(for="nombre") Nombre
+                    input(type="text", name="nombre", placeholder="nombre de la cerveza",id="nombre",class="form-control")
+                div
+                    label(for="descripcion") Descripcion
+                    input(type="text", name="descripcion", placeholder="descripcion de la cerveza",id="descripcion",class="form-control") 
+                
+                div(class="row top-space")
+                    div(class="col-xs-12 col-sm-6")
+                        input(type="submit" value="Guardar", class="btn btn-info")          
+                    
