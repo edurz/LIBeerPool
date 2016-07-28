@@ -4,6 +4,9 @@ block contenido
 		h1 Nueva
 	h3 cervezas internacionales
 
+	if mensaje
+		div(class= 'alert alert-success', role= 'alert')
+			p.animated.fadeIn.delay-1= mensaje
 	div(class="container")
 		for cervezas in listaBeer
 			.white.border.tr.large-padding
@@ -13,6 +16,10 @@ block contenido
 					.col-md-6
 						h2= cervezas.descripcion
 					.col-md-2
-						a(href="/app/imagenes/#{cervezas._id}/edit",class="right-space") Editar
-						form(action="/app/imagenes/#{cervezas._id}/?_method=DELETE",class="link",method="post")
+						a(href="/cervezas/internacionales/#{cervezas._id}/editar",class="right-space") Editar
+						form(action="/cervezas/internacionales/#{cervezas._id}/?_method=DELETE",class="link",method="post")
 							input(type="submit", value="Eliminar")
+
+	h1.letraIndie.colorTitulo.animated.fadeIn.delay-1  El mejor lugar para beber y divertirse
+
+	

@@ -17,6 +17,24 @@ html
   body
     section#main-content.full-height.text-center
       .data
+        nav.large-padding.fondo-gris
+          ul.no-list.mediano
+            li.letraIndie.col-md-2.inline-block
+              a.colorTitulo(href='/') LIBeerPool 
+                small.colorSubtitulo.lato.small Cervezas Artesanales y Pool
+            li.col-md-2.inline-block
+              a.colorTitulo(href='login') Login
+            li.col-md-2.inline-block
+              a.colorTitulo(href='signup') Registrarte
+            li.col-md-2.inline-block
+              a.colorTitulo(href='contacto') Contacto
+            li.col-md-2.inline-block
+              a.colorTitulo(href='acerca.html') 
+                 if user
+                  h1 #{user.email}
+                 else 
+                  h1 hola
+              
         .col-md-3.center-block.no-float.top-space
           img.animated.shake(src='imgs/iconbeer.png')
           h1.letraIndie.colorTitulo.animated.fadeIn.delay-1  El mejor lugar para beber y divertirse

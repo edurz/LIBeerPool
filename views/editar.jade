@@ -1,0 +1,18 @@
+extends ./layout.jade
+block contenido
+    div(class="col-md-6 remove-float center-block big-top-space")
+        h1 Editar cerveza
+        form(action="/cervezas/internacionales/#{beer.id}?_method=PUT" method= "post")
+            
+            div(class="form-group")
+                label(for="nombre") Nombre
+                input(type="text", name="nombre", placeholder="nombre cerveza",id="nombre",class="form-control",value="#{beer.nombre}")
+                label(for="descripcion") Descripcion
+                input(type="text", name="descripcion", placeholder="descripcion",id="descripcion",class="form-control",value="#{beer.descripcion}")
+           
+            
+            div(class="row top-space")
+                div(class="col-xs-12 col-sm-6")
+                    input(type="submit" value="Guardar", class="btn btn-info")          
+                div(class="col-xs-12 col-sm-6 text-right")
+                    a(href="/signup") No tengo cuenta

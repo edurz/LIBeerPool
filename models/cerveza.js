@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 
-mongoose.connect("mongodb://localhost/libeerpool");
+//mongoose.connect("mongodb://localhost/libeerpool");
 
 var beerSchema = new Schema({
 nombre: String,
