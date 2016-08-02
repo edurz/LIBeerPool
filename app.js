@@ -124,9 +124,13 @@ app.post("/sessions", function(req,res){
     //User.findById("",function(err,docs){}); se copia el _id de la consola
     //User.findOne({},function(err,docs){});
 User.findOne({email:req.body.email,password:req.body.password}, function(err,user){
+    if(user){
     req.session.user_id = user._id;
-    res.redirect("/");
-
+    res.redirect("/");    
+    }else{
+        res.redirect("/login");
+    }
+    
 });
 
 });
