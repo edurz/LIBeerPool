@@ -6,8 +6,10 @@ var User = require("./models/user").User;
 var methodOverride = require("method-override");
 var cookieSession = require("cookie-session");
 var session_middleware = require("./middlewares/session");
-var app = express();
+var router_app = require("./routes_app");
 
+var app = express();
+var router = express.Router();
 
 
 
@@ -28,7 +30,7 @@ app.use(cookieSession({
 
 app.get("/", function(req,res){
     
-Cerveza.find(function(err,doc){
+User.find(function(err,doc){
 console.log(doc);
 res.render("index");
 })
@@ -165,6 +167,8 @@ app.delete("/cervezas/internacionales/:id", function(req,res){
         })
 });
 
-app.use("/",session_middleware);
+app.use("/app",session_middleware);
+app.use("/app",router_app);
+
 
 app.listen(8080);
