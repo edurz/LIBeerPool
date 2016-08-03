@@ -6,6 +6,7 @@ module.exports = function(req,res,next){
 	}
 	else{
 		User.findById(req.session.user_id,function(err,user){
+			console.log(req.session.user_id);
 			if(err){
 				console.log(err);
 				res.redirect("/login");

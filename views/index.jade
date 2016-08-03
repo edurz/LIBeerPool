@@ -22,18 +22,18 @@ html
             li.letraIndie.col-md-2.inline-block
               a.colorTitulo(href='/') LIBeerPool 
                 small.colorSubtitulo.lato.small Cervezas Artesanales y Pool
-            li.col-md-2.inline-block
-              a.colorTitulo(href='login') Login
-            li.col-md-2.inline-block
-              a.colorTitulo(href='signup') Registrarte
-            li.col-md-2.inline-block
-              a.colorTitulo(href='contacto') Contacto
-            li.col-md-2.inline-block
-              a.colorTitulo(href='acerca.html') 
-                 if user
-                  h1 #{user.email}
-                 else 
-                  h1 hola
+            if user
+              li.col-md-2.inline-block
+                p.colorTitulo Bienvenido #{user.username}
+              li.col-md-2.inline-block
+                a.colorTitulo(href='logout') Logout
+            else 
+              li.col-md-2.inline-block
+                a.colorTitulo(href='login') Login
+              li.col-md-2.inline-block
+                a.colorTitulo(href='signup') Registrarte
+              li.col-md-2.inline-block
+                a.colorTitulo(href='contacto') Contacto
               
         .col-md-3.center-block.no-float.top-space
           img.animated.shake(src='imgs/iconbeer.png')
