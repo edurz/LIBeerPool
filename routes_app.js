@@ -4,7 +4,8 @@ var router = express.Router();
 
 router.get("/",function(req,res){
 	/* busca el usuario */
-	res.render("app/index")
+	console.log('hola')
+	res.render("index")
 });
 
 /* RUTAS REST */

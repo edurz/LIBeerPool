@@ -7,6 +7,8 @@ var methodOverride = require("method-override");
 var cookieSession = require("cookie-session");
 var session_middleware = require("./middlewares/session");
 var router_app = require("./routes_app");
+var helmet = require('helmet');
+
 
 var app = express();
 var router = express.Router();
@@ -21,23 +23,39 @@ app.use(express.static("public"));
 app.use(bodyParser.json()); // para poder procesar peticiones post y extraer los datos de un form. ej:  req.body.email
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
+app.use(helmet());
 
-
+var expiryDate = new Date( Date.now() + 10 * 60 * 1000 ); // 1 hour
 app.use(cookieSession({
     name: "session",
-    keys: ["llave-1","llave-2"]
+    keys: ["llave-1","llave-2"],
+    cookie: { secure: true,
+            httpOnly: true,
+            expires: expiryDate
+          }
 }));
 
 app.get("/", function(req,res){
     
 User.find(function(err,doc){
 console.log(doc);
-res.render("index");
-})
+
+});
+if(req.session.user_id){
+    res.redirect("/app");
+    }else{
+        res.render("index");
+    }
 });
 
 app.get("/login",function(req,res){
-res.render("login");
+   
+        res.render("login");
+});
+
+app.get("/logout", function(req,res){
+    req.session = null
+    res.render("index");
 });
 
 app.get("/signup", function(req,res){
@@ -123,13 +141,10 @@ console.log(user.password_confirmation);
 app.post("/sessions", function(req,res){
     //User.findById("",function(err,docs){}); se copia el _id de la consola
     //User.findOne({},function(err,docs){});
-User.findOne({email:req.body.email,password:req.body.password}, function(err,user){
-    if(user){
+User.findOne({email:req.body.email,password:req.body.password}, function(err,user){ 
     req.session.user_id = user._id;
-    res.redirect("/");    
-    }else{
-        res.redirect("/login");
-    }
+    res.redirect("/app");
+    
     
 });
 
