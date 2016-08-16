@@ -24,8 +24,9 @@ app.use(bodyParser.json()); // para poder procesar peticiones post y extraer los
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(helmet());
+app.disable('x-powered-by');
 
-var expiryDate = new Date( Date.now() + 10 * 60 * 1000 ); // 1 hour
+var expiryDate = new Date( Date.now() + 60 * 60 * 1000 ); // 1 hour
 app.use(cookieSession({
     name: "session",
     keys: ["llave-1","llave-2"],
@@ -74,13 +75,39 @@ app.get("/cervezas/internacionales", function(req,res){
 
 Cerveza.find(function(error,documento){
     if(error){ console.log(error); }
-    res.render("internacionales", { listaBeer: documento})
+    if(req.session.user_id){
+        User.findById(req.session.user_id,function(err,user){
+            if(err){
+                console.log(err);
+                res.redirect("/");
+            }else{
+                res.render("internacionales", { listaBeer: documento, usuario: user.username });
+                
+            }
+        });
+        
+    }else{
+        res.render("internacionales", { listaBeer: documento});
+    }
     });
 
 });
 
 app.get("/cervezas/internacionales/new", function(req,res){
-res.render("interNew")
+    if(req.session.user_id){
+        User.findById(req.session.user_id,function(err,user){
+            if(err){
+                console.log(err);
+                res.redirect("/");
+            }else{
+                res.render("interNew", { usuario: user.username });
+                
+            }
+        });
+             
+    }else{
+        res.redirect("/");
+    }
 });
 
 app.get("/cervezas/internacionales/:id/editar", function(req,res){
@@ -142,8 +169,14 @@ app.post("/sessions", function(req,res){
     //User.findById("",function(err,docs){}); se copia el _id de la consola
     //User.findOne({},function(err,docs){});
 User.findOne({email:req.body.email,password:req.body.password}, function(err,user){ 
-    req.session.user_id = user._id;
-    res.redirect("/app");
+
+    if(user){
+        req.session.user_id = user._id;
+        res.redirect("/app");
+    }else{
+        res.render("login", {mensaje : "email o contraseña incorrecta"});
+    }
+   
     
     
 });

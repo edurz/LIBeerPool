@@ -1,30 +1,32 @@
 doctype html
 html
   head
-    title &iexcl;El mejor lugar del mundo!
-    | &#x9;
+    title El mejor lugar del mundo!
     meta(charset='utf-8')
-    | &#x9;
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet')
-    | &#x9;
     link(href='/css/main.css', rel='stylesheet')
-    | &#x9;
     link(href='https://fonts.googleapis.com/css?family=Indie+Flower', type='text/css', rel='stylesheet')
-    | &#x9;
     link(href='http://fonts.googleapis.com/css?family=Lato:300,400', rel='stylesheet', type='text/css')
-    | &#x9;
-    link(href='css/animate.css', rel='stylesheet', type='text/css')
+    link(href='/css/animate.css', rel='stylesheet', type='text/css')
   body
     section#main-content.full-height.text-center
       .data
         nav.large-padding.fondo-gris
-          ul.no-list.mediano
-            li.letraIndie.col-md-3.inline-block
-              a.colorTitulo(href='/') LIBeerPool 
-                small.colorSubtitulo.lato.small Cervezas Artesanales y Pool
-            li.col-md-3.inline-block
-              a.colorTitulo(href='contacto') Contacto
-            | &#x9;&#x9;&#x9;&#x9;&#x9;
-            li.col-md-3.inline-block
-              a.colorTitulo(href='acerca.html') Acerca de
-      block contenido
+            ul.no-list.mediano
+              li.letraIndie.col-md-2.inline-block
+                a.colorTitulo(href='/') LIBeerPool 
+                  small.colorSubtitulo.lato.small Cervezas Artesanales y Pool
+              if usuario
+                li.col-md-2.inline-block
+                  p.colorTitulo Bienvenido #{usuario}
+                li.col-md-2.inline-block
+                  a.colorTitulo(href='/logout') Logout
+              else 
+                li.col-md-2.inline-block
+                  a.colorTitulo(href='/login') Login
+                li.col-md-2.inline-block
+                  a.colorTitulo(href='/signup') Registrarte
+                li.col-md-2.inline-block
+                  a.colorTitulo(href='/contacto') Contacto
+        block contenido
