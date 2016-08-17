@@ -1,18 +1,20 @@
 extends ./layout.jade
 block contenido
-    div(class="col-md-6 remove-float center-block big-top-space")
+    div(class="col-md-3 col-sm-6 col-xs-12 no-float center-block top-space")
         h1 Login 
+        if mensaje
+            div(class= 'alert alert-danger animated fadeOut delay-2', role= 'alert')
+                p= mensaje
         form(action="/sessions" method= "post")
             
-            div(class="form-group")
+            div(class="form-group well")
                 label(for="email") Email
                 input(type="text", name="email", placeholder="Email",id="email",class="form-control")
-            div
                 label(for="password") password
-                input(type="password", name="password",placeholder="Email",id="password",class="form-control")  
+                input(type="password", name="password",placeholder="Password",id="password",class="form-control")  
             
-            div(class="row top-space")
-                div(class="col-xs-12 col-sm-6")
-                    input(type="submit" value="Iniciar Sesión", class="btn btn-info")          
-                div(class="col-xs-12 col-sm-6 text-right")
-                    a(href="/signup") No tengo cuenta
+                div(class="row top-space")
+                    div(class="col-xs-12 col-sm-6")
+                        input(type="submit" value="Iniciar Sesión", class="btn btn-info")          
+                    div(class="col-xs-12 col-sm-6 text-right")
+                        a(href="/signup") No tengo cuenta

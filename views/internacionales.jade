@@ -1,25 +1,29 @@
 extends ./layout.jade
 block contenido
-	a(href="/cervezas/internacionales/new")
-		h1 Nueva
-	h3 cervezas internacionales
+	div(class="col-md-6 no-float center-block top-space")
+			if usuario
+				a(href="/cervezas/internacionales/new")
+					h1 Nueva
 
-	if mensaje
-		div(class= 'alert alert-success', role= 'alert')
-			p.animated.fadeIn.delay-1= mensaje
-	div(class="container")
-		for cervezas in listaBeer
-			.white.border.tr.large-padding
-				.row
-					.col-md-4
-						h2= cervezas.nombre
-					.col-md-6
-						h2= cervezas.descripcion
-					.col-md-2
-						a(href="/cervezas/internacionales/#{cervezas._id}/editar",class="right-space") Editar
-						form(action="/cervezas/internacionales/#{cervezas._id}/?_method=DELETE",class="link",method="post")
-							input(type="submit", value="Eliminar")
+			h3 cervezas internacionales
 
-	h1.letraIndie.colorTitulo.animated.fadeIn.delay-1  El mejor lugar para beber y divertirse
+			if mensaje
+				div(class= 'alert alert-success animated fadeOut delay-2', role= 'alert')
+					p= mensaje
+			//div(class="container")
+			for cervezas in listaBeer
+					.white.border.tr.large-padding
+						.row
+							.col-md-4
+								h2= cervezas.nombre
+							.col-md-6
+								h2= cervezas.descripcion
+							if usuario
+								.col-md-2
+									a(href="/cervezas/internacionales/#{cervezas._id}/editar",class="right-space") Editar
+									form(action="/cervezas/internacionales/#{cervezas._id}/?_method=DELETE",class="link",method="post")
+										input(type="submit", value="Eliminar")
 
-	
+			h1.letraIndie.colorTitulo.animated.fadeIn.delay-1  El mejor lugar para beber y divertirse
+
+		
