@@ -9,6 +9,10 @@ var session_middleware = require("./middlewares/session");
 var router_app = require("./routes_app");
 var helmet = require('helmet');
 
+var multer = require('multer');
+var upload = multer({dest: './uploads/'});
+var fs = require('fs');
+
 
 var app = express();
 var router = express.Router();
@@ -119,12 +123,23 @@ app.get("/cervezas/internacionales/:id/editar", function(req,res){
 
 /*POST*/
 
-app.post("/cervezas/internacionales", function(req,res){
-//console.log(req.body);
-var cerveza = new Cerveza({nombre: req.body.nombre,
-                           descripcion: req.body.descripcion
-});
+app.post("/cervezas/internacionales", upload.single('foto'), function(req,res,next){
+   
+        //copiamos el archivo a la carpeta definitiva de fotos
+       fs.createReadStream('./uploads/'+req.file.filename).pipe(fs.createWriteStream('./public/fotos/'+req.file.originalname)); 
+       //borramos el archivo temporal creado
+       fs.unlink('./uploads/'+req.file.filename); 
 
+       var cerveza = new Cerveza({nombre: req.body.nombre,
+                           descripcion: req.body.descripcion,
+                           imagen: '../fotos/' + req.file.originalname
+        });
+
+       
+       //console.log("originalname" + req.files[x].originalname);
+    
+
+//console.log(req.body);
 cerveza.save().then(function(us){ //promesas, retorna el metodo then()
         Cerveza.find(function(error,documento){
         if(error){ console.log(error); }
@@ -185,7 +200,7 @@ User.findOne({email:req.body.email,password:req.body.password}, function(err,use
 
 
 /* ----------------------------------------------------------------------------*/
-/* PUT */
+/* PUT - EDITAR */ 
 
 
 app.put("/cervezas/internacionales/:id", function(req,res){

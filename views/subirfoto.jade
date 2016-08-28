@@ -1,0 +1,13 @@
+extends ./layout.jade
+block contenido
+      div(class="col-md-6 no-float center-block top-space")
+            form(method='post', action='/app/subirfoto', enctype='multipart/form-data')
+                  div(class="form-group")
+                      label(name="foto") Seleccione una foto:
+                      input(type='file', name='foto', class='form-control')
+                      
+
+
+                  div(class="row top-space")
+                        div(class="col-xs-12 col-sm-6")   
+                              input(type='submit', value='subir', class="btn btn-info")

@@ -4,6 +4,8 @@ block contenido
 			if usuario
 				a(href="/cervezas/internacionales/new")
 					h1 Nueva
+				a(href="/app/subirfoto")
+					h1 Foto
 
 			h3 cervezas internacionales
 
@@ -14,10 +16,13 @@ block contenido
 			for cervezas in listaBeer
 					.white.border.tr.large-padding
 						.row
-							.col-md-4
+							.col-md-3
 								h2= cervezas.nombre
-							.col-md-6
+							.col-md-5
 								h2= cervezas.descripcion
+							.col-md-4
+								//img(src="../fotos/homertattoo.jpeg") 
+								img(src="#{cervezas.imagen}") 
 							if usuario
 								.col-md-2
 									a(href="/cervezas/internacionales/#{cervezas._id}/editar",class="right-space") Editar

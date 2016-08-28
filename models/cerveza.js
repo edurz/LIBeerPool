@@ -6,7 +6,8 @@ var Schema = mongoose.Schema;
 
 var beerSchema = new Schema({
 nombre: String,
-descripcion: String
+descripcion: String,
+imagen: String
 });
 
 var Cerveza = mongoose.model("Cerveza",beerSchema);
