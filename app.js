@@ -120,6 +120,13 @@ app.get("/cervezas/internacionales/:id/editar", function(req,res){
     });
 });
 
+app.get("/cervezas/internacionales/:id/detalle", function(req,res){
+    Cerveza.findById(req.params.id,function(err,beer){
+    res.render("beerdetalle",{beer : beer});
+});
+    
+})
+
 
 /*POST*/
 
