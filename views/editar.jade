@@ -9,7 +9,8 @@ block contenido
                 input(type="text", name="nombre", placeholder="nombre cerveza",id="nombre",class="form-control",value="#{beer.nombre}")
                 label(for="descripcion") Descripcion
                 input(type="text", name="descripcion", placeholder="descripcion",id="descripcion",class="form-control",value="#{beer.descripcion}")
-           
+                label(for="foto") Imagen
+                input(type="file", name="foto", class="form-control")
             
             div(class="row top-space")
                 div(class="col-xs-12 col-sm-6")

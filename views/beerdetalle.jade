@@ -1,0 +1,26 @@
+extends ./layout.jade
+block contenido
+	.col-sm-4
+		img(src="../../"+"#{beer.imagen}")
+
+	.row
+		.col-sm-4
+			h1 #{beer.nombre}
+		.col-sm-4
+			h1 #{beer.descripcion}
+
+	.white.border.tr.large-padding
+			.row
+				
+				.col-md-4.col-xs-5.col-sm-5
+					//img(src="../fotos/homertattoo.jpeg") 
+					a(href="/cervezas/internacionales/#{cervezas._id}/detalle")
+						img(src="#{cervezas.imagen}", class="img-responsive img-thumbnail") 
+				if usuario
+					.col-md-2
+						a(href="/cervezas/internacionales/#{cervezas._id}/editar",class="right-space") Editar
+						form(action="/cervezas/internacionales/#{cervezas._id}/?_method=DELETE",class="link",method="post")
+							input(type="submit", value="Eliminar")
+
+
+

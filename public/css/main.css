@@ -85,3 +85,7 @@ a{
 .no-list li{
 	list-style-type: none;
 }
+
+[type=file]:hover {
+  cursor: pointer;
+}

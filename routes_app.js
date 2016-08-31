@@ -1,6 +1,9 @@
 var express = require("express");
 var Cerveza = require("./models/cerveza").Cerveza;
 var router = express.Router();
+var multer = require('multer');
+var upload = multer({dest: './uploads/'});
+var fs = require('fs');
 
 router.get("/",function(req,res){
 	/* busca el usuario */
@@ -78,5 +81,37 @@ router.route("/imagenes")
 		});
 	});
 
+
+
+
+
+
+
+
+
+
+
+//-------------------------------------------------
+
+router.get('/subirfoto', function(req, res, next) {
+  res.render('subirfoto');
+});
+
+
+router.post('/subirfoto', upload.single('foto'), function(req, res, next) {
+    
+        //copiamos el archivo a la carpeta definitiva de fotos
+       fs.createReadStream('./uploads/'+req.file.filename).pipe(fs.createWriteStream('./public/fotos/'+req.file.originalname)); 
+       //borramos el archivo temporal creado
+       fs.unlink('./uploads/'+req.file.filename); 
+
+       console.log("filename" + req.file.filename);
+       console.log("originalname" + req.file.originalname);
+     
+    var pagina='<!doctype html><html><head></head><body>'+
+               '<p>Se subieron las fotos</p>'+
+               '<br><a href="/">Retornar</a></body></html>';
+      res.send(pagina);        
+});
 
 module.exports = router;
